@@ -4,7 +4,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Template_ListBox
+namespace ProjetCalculatrice
 {
     public abstract class BaseNotifyPropertyChanged : INotifyPropertyChanged
     {
