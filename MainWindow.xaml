@@ -5,17 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetCalculatrice"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Kaalculattrice: C'est pas faux !" Icon="assets/calculon.ico" Height="350" Width="525" MinWidth="180" MinHeight="250">
 
     <!-- DESIGN / STYLE -->
     <Window.Resources>
-        
-        <!-- TODO -->
-        
+        <Style x:Key="Grid1" TargetType="Grid">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="75"/>
+        </Style>
+        <Style x:Key="PadButton" TargetType="Button">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
     </Window.Resources>
 
     <!-- MISE EN PAGE -->
-    <Grid>
+    <Grid Style="{StaticResource Grid1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="5" />
@@ -25,13 +32,13 @@
         <!-- Grid contenant les champs de la Calculatrice -->
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="15" />
-                <RowDefinition Height="50" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="40" />
+                <RowDefinition Height="25" />
             </Grid.RowDefinitions>
 
             <!-- Bouton(s) d'Affichage (Historique, ...) -->
-            <Button Grid.Row="0" Content="Historique">
+            <Button Grid.Row="0" Content="Historique" HorizontalAlignment="Right">
 
             </Button>
 
@@ -54,56 +61,62 @@
         <!-- Grid contenant les boutons de la Calculatrice -->
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <!-- Buttons Set #01 -->
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition />
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Content="OP"/>
-                <Button Grid.Column="1" Content="OP"/>
-                <Button Grid.Column="2" Content="OP"/>
-                <Button Grid.Column="3" Content="OP"/>
+                <Button Grid.Column="0" Style="{StaticResource PadButton}" Content="1"/>
+                <Button Grid.Column="1" Style="{StaticResource PadButton}" Content="2"/>
+                <Button Grid.Column="2" Style="{StaticResource PadButton}" Content="3"/>
+                <Button Grid.Column="3" Style="{StaticResource PadButton}" Content="+"/>
+                <Button Grid.Column="4" Style="{StaticResource PadButton}" Content="-"/>
 
             </Grid>
 
             <!-- Buttons Set #02 -->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Content="OP"/>
-                <Button Grid.Column="1" Content="OP"/>
-                <Button Grid.Column="2" Content="OP"/>
-                <Button Grid.Column="3" Content="OP"/>
+                <Button Grid.Column="0" Style="{StaticResource PadButton}" Content="4"/>
+                <Button Grid.Column="1" Style="{StaticResource PadButton}" Content="5"/>
+                <Button Grid.Column="2" Style="{StaticResource PadButton}" Content="6"/>
+                <Button Grid.Column="3" Style="{StaticResource PadButton}" Content="*"/>
+                <Button Grid.Column="4" Style="{StaticResource PadButton}" Content="/"/>
                 
             </Grid>
 
             <!-- Buttons Set #03 -->
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Content="OP"/>
-                <Button Grid.Column="1" Content="OP"/>
-                <Button Grid.Column="2" Content="OP"/>
-                <Button Grid.Column="3" Content="OP"/>
+                <Button Grid.Column="0" Style="{StaticResource PadButton}" Content="7"/>
+                <Button Grid.Column="1" Style="{StaticResource PadButton}" Content="8"/>
+                <Button Grid.Column="2" Style="{StaticResource PadButton}" Content="9"/>
+                <Button Grid.Column="3" Style="{StaticResource PadButton}" Content="DEL"/>
+                <Button Grid.Column="4" Style="{StaticResource PadButton}" Content="C"/>
                 
             </Grid>
 
