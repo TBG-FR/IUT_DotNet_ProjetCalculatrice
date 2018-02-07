@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace ProjetCalculatrice
         public MainWindow()
         {
             this.calculatrice = new Calculatrice();
-            this.DataContext = this.calculatrice.Calculs;
+            this.DataContext = this.calculatrice;
             InitializeComponent();
 
             /*
@@ -59,6 +60,16 @@ namespace ProjetCalculatrice
             result = sc.Eval(expression);
             MessageBox.Show("VIR" + result.ToString());
             */
+        }
+
+        private void Button_Calculate_Click(object sender, RoutedEventArgs e)
+        {
+            this.calculatrice.Calculate(this.calculatrice.CurrentCalcul.Input);
+        }
+        private void Button_History_Click(object sender, RoutedEventArgs e)
+        {
+            // Ouvrir Window + ListBox : Historique
+            //new HistoryWindow(this.calculatrice);
         }
 
         /*

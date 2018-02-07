@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjetCalculatrice.Model
 {
-    class Calculatrice : BaseNotifyPropertyChanged
+    public class Calculatrice : BaseNotifyPropertyChanged
     {
 
         /* ===== ===== ===== Model.Calculatrice - Attributes & Properties ===== ===== ===== */
@@ -29,7 +29,7 @@ namespace ProjetCalculatrice.Model
         {
 
             Calculs = new ObservableCollection<Calcul>();
-            CurrentCalcul = null;
+            CurrentCalcul = new Calcul();
 
             System.Console.Write("[+] Calculatrice - Empty");
 

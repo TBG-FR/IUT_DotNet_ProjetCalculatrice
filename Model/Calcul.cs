@@ -15,9 +15,9 @@ namespace ProjetCalculatrice.Model
             set { SetProperty(value); }
         }
 
-        public float? Result
+        public double? Result
         {
-            get { return (float?) GetProperty(); }
+            get { return (double?) GetProperty(); }
             set { SetProperty(value); }
         }
 
