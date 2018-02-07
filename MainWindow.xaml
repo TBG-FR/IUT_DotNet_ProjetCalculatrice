@@ -1,0 +1,114 @@
+﻿<Window x:Class="ProjetCalculatrice.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetCalculatrice"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+
+    <!-- DESIGN / STYLE -->
+    <Window.Resources>
+        
+        <!-- TODO -->
+        
+    </Window.Resources>
+
+    <!-- MISE EN PAGE -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Grid contenant les champs de la Calculatrice -->
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+
+            <!-- Bouton(s) d'Affichage (Historique, ...) -->
+            <Button Grid.Row="0" Content="Historique">
+
+            </Button>
+
+            <!-- TextBox : Entrée -->
+            <TextBox Grid.Row="1" Text="INPUT">
+
+            </TextBox>
+
+            <!-- Textbox : Résultat -->
+            <TextBlock Grid.Row="2" Text="RESULT">
+                
+            </TextBlock>
+
+
+        </Grid>
+        
+        <!-- Separateur entre les Grid -->
+        <Separator Grid.Row="1" />
+
+        <!-- Grid contenant les boutons de la Calculatrice -->
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+
+            <!-- Buttons Set #01 -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="OP"/>
+                <Button Grid.Column="1" Content="OP"/>
+                <Button Grid.Column="2" Content="OP"/>
+                <Button Grid.Column="3" Content="OP"/>
+
+            </Grid>
+
+            <!-- Buttons Set #02 -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="OP"/>
+                <Button Grid.Column="1" Content="OP"/>
+                <Button Grid.Column="2" Content="OP"/>
+                <Button Grid.Column="3" Content="OP"/>
+                
+            </Grid>
+
+            <!-- Buttons Set #03 -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="OP"/>
+                <Button Grid.Column="1" Content="OP"/>
+                <Button Grid.Column="2" Content="OP"/>
+                <Button Grid.Column="3" Content="OP"/>
+                
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+    
+</Window>
