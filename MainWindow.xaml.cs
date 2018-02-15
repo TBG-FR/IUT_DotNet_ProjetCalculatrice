@@ -80,5 +80,9 @@ namespace ProjetCalculatrice
         MessageBox.Show(result.ToString());        
         */
 
+        private void Button_Insert_Self(object sender, RoutedEventArgs e)
+        {
+            this.calculatrice.CurrentCalcul.Input += ((Button)e.Source).Content.ToString();
+        }
     }
 }
