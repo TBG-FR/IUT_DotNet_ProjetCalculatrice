@@ -5,34 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetCalculatrice"
         mc:Ignorable="d"
-        Title="HistoryWindow" Height="300" Width="300">
+        Title="HistoryWindow" Height="400" Width="400">
 
     <!-- Style (Template) -->
     <Window.Resources>
-        <Style x:Key="Calcul" TargetType="TextBlock">
+
+        <Style x:Key="BottomMenu_Button" TargetType="Button">
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
         </Style>
+
+        <Style x:Key="Calcul" TargetType="TextBlock">
+            <Setter Property="TextTrimming" Value="None" />
+            <Setter Property="FontStyle" Value="Oblique" />
+        </Style>
+
+        <Style x:Key="Equals" TargetType="TextBlock">
+            <Setter Property="TextTrimming" Value="None" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        
+        <Style x:Key="Result" TargetType="TextBlock">
+            <Setter Property="TextTrimming" Value="None" />
+        </Style>
+        
     </Window.Resources>
 
     <!-- Mise en Page -->
     <Grid>
-        <ListBox ItemsSource="{Binding Calculatrice.Calculs}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ListBox ItemsSource="{Binding Calculs}" Grid.Row="0">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
 
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Input :" Style="{StaticResource Calcul}" />
-                            <TextBlock Text="{Binding Input}" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Result :" Style="{StaticResource Calcul}" />
-                            <TextBlock Text="{Binding Result}" />
+                            <TextBlock Text="{Binding Input}" Style="{StaticResource Calcul}" />
+                            <TextBlock Text=" = " Style="{StaticResource Equals}" />
+                            <TextBlock Text="{Binding Result}" Style="{StaticResource Result}" />
                         </StackPanel>
 
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ListBox>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+
+            <Button Style="{StaticResource BottomMenu_Button}"
+                    Content="Effacer l'Historique"
+                    Click="Button_ResetHistory_Click"/>
+
+            <Button Style="{StaticResource BottomMenu_Button}"
+                    Content="Exporter l'Historique"
+                    Click="Button_ExportHistory_Click"/>
+
+        </StackPanel>
+
     </Grid>
 </Window>

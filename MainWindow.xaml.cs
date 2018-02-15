@@ -64,25 +64,27 @@ namespace ProjetCalculatrice
 
         private void Button_Calculate_Click(object sender, RoutedEventArgs e)
         {
-            this.calculatrice.Calculate(this.calculatrice.CurrentCalcul.Input);
-        }
-        private void Button_History_Click(object sender, RoutedEventArgs e)
-        {
-            // Ouvrir Window + ListBox : Historique
-            //new HistoryWindow(this.calculatrice);
+            this.calculatrice.Calculate();
         }
 
-        /*
-        MSScriptControl.ScriptControl sc = new MSScriptControl.ScriptControl();
-        sc.Language = "VBScript";
-        string expression = "(1 + 2) * 7";
-        object result = sc.Eval(expression);
-        MessageBox.Show(result.ToString());        
-        */
+        private void Button_History_Click(object sender, RoutedEventArgs e)
+        {
+            HistoryWindow subW_History = new HistoryWindow(this.calculatrice);
+            subW_History.Show();
+        }
 
         private void Button_Insert_Self(object sender, RoutedEventArgs e)
         {
-            this.calculatrice.CurrentCalcul.Input += ((Button)e.Source).Content.ToString();
+            this.calculatrice.CurrentCalcul.Input += ((Button) e.Source).Content.ToString();
         }
-    }
+
+    /*
+    MSScriptControl.ScriptControl sc = new MSScriptControl.ScriptControl();
+    sc.Language = "VBScript";
+    string expression = "(1 + 2) * 7";
+    object result = sc.Eval(expression);
+    MessageBox.Show(result.ToString());        
+    */
+
+}
 }

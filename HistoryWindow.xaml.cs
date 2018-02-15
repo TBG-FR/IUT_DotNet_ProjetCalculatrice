@@ -25,5 +25,13 @@ namespace ProjetCalculatrice
             this.DataContext = calculatrice;
             InitializeComponent();
         }
+        private void Button_ResetHistory_Click(object sender, RoutedEventArgs e)
+        {
+            // 
+        }
+        private void Button_ExportHistory_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

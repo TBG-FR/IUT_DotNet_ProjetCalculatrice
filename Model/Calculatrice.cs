@@ -14,7 +14,7 @@ namespace ProjetCalculatrice.Model
 
         public Calcul CurrentCalcul
         {
-            get { return (Calcul) GetProperty(); }
+            get { return (Calcul)GetProperty(); }
             set { SetProperty(value); }
         }
         public ObservableCollection<Calcul> Calculs
@@ -37,19 +37,34 @@ namespace ProjetCalculatrice.Model
 
         /* ===== ===== ===== Model.Calculatrice - Methods ===== ===== ===== */
 
-        public void Calculate(string input)
+        public void Calculate()
         {
 
-            // Ajouter le Calcul précédent à l'historique, si il existe et si il a été calculé avec succès
-            if (this.CurrentCalcul != null && this.CurrentCalcul.Done == true) { Calculs.Add(this.CurrentCalcul); }
+            this.CurrentCalcul = new Calcul(this.CurrentCalcul.Input);
 
-            // Créer un nouveau Calcul avec l'input, puis effectuer le calcul
-            this.CurrentCalcul = new Calcul(input);
-            this.CurrentCalcul.Calculate();
+            if (this.CurrentCalcul.Calculate())
+            {
 
-            // TODO - LA SUITE
+                Calculs.Add(this.CurrentCalcul);
+
+                // Créer un nouveau calcul (une copie de CurrentCalcul) pour éviter de fausser l'historique
+                // (sans ça, l'input n-1 est remplacé par l'input n dans l'historique (mais les résultats ne bougent pas))
+                // Ce calcul est simplement présent pour palier à ce problème, et est destiné à être affiché sur la calculatrice
+                Calcul temp = this.CurrentCalcul;
+                this.CurrentCalcul = new Calcul(temp.Input, temp.Result);
+
+            }
+
+            else
+            {
+                // Si le calcul a échoué, on ne l'ajoute pas dans l'historique
+                Calcul temp = this.CurrentCalcul;
+                this.CurrentCalcul = new Calcul(temp.Input, null);
+
+            }
 
         }
 
     }
+
 }

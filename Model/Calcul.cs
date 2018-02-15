@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ProjetCalculatrice.Model
 {
@@ -21,17 +22,10 @@ namespace ProjetCalculatrice.Model
             set { SetProperty(value); }
         }
 
-        public bool Done
-        {
-            get { return (bool) GetProperty(); }
-            set { SetProperty(value); }
-        }
-
         /* ===== ===== ===== Model.Calcul - Constructor ===== ===== ===== */
         public Calcul()
         {
             this.Input = "";
-            this.Done = false;
             this.Result = null;
 
             System.Console.Write("[+] Calcul - Empty");
@@ -41,21 +35,34 @@ namespace ProjetCalculatrice.Model
         public Calcul(string input)
         {
             this.Input = input;
-            this.Done = false;
             this.Result = null;
 
             System.Console.Write("[+] Calcul - Input");
+        }
+
+        public Calcul(string input, double? result)
+        {
+            this.Input = input;
+            this.Result = result;
+
+            System.Console.Write("[+] Calcul - Input/Result");
         }
 
         /* ===== ===== ===== Model.Calcul - Methods ===== ===== ===== */
 
         private bool CheckInput()
         {
-            // TODO : Vérifier Points, Virgules, Lettres, Charactères spéciaux/non supportés, etc...
-            return true;
+
+            // TODO ? : Vérifier Points, Virgules, Lettres, Charactères spéciaux/non supportés, etc...
+            if (this.Input.Contains(",") || this.Input.Contains("%") || this.Input.Contains("!"))
+                return false;
+
+            else
+                return true;
+
         }
 
-        public void Calculate()
+        public bool Calculate()
         {
 
             if(CheckInput())
@@ -66,13 +73,14 @@ namespace ProjetCalculatrice.Model
                 //object result = sc.Eval(expression);
                 //MessageBox.Show(result.ToString());
                 this.Result = sc.Eval(this.Input);
-                this.Done = true;
+                return true;
             }
 
             else
             {
                 this.Result = null;
-                this.Done = false;
+                MessageBox.Show("Calcul invalide !");
+                return false;
             }
 
         }
