@@ -54,7 +54,7 @@ namespace ProjetCalculatrice.Model
         {
 
             // TODO ? : Vérifier Points, Virgules, Lettres, Charactères spéciaux/non supportés, etc...
-            if (this.Input.Contains(",") || this.Input.Contains("%") || this.Input.Contains("!"))
+            if (this.Input.Contains(",") || this.Input.Contains("%") || this.Input.Contains("!") || this.Input.Contains("*/") || this.Input.Contains("/*") || this.Input.Contains("$"))
                 return false;
 
             else
