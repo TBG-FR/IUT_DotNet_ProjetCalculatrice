@@ -30,6 +30,7 @@ namespace ProjetCalculatrice
         public MainWindow()
         {
             this.calculatrice = new Calculatrice();
+            string test = this.calculatrice.CurrentCalcul.ReplaceSqrt("√(5+cos(8))+√(5+sin(4))+√(5*4^4)+√(√(5+3)+2)");
             this.DataContext = this.calculatrice;
             InitializeComponent();
 

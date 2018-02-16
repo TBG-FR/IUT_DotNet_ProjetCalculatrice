@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetCalculatrice"
         mc:Ignorable="d"
-        Title="Kaalculattrice: C'est pas faux !" Icon="assets/calculon.ico" Height="350" Width="525" MinWidth="180" MinHeight="250" KeyDown="Window_KeyDown">
+        Title="Kaalculattrice: C'est pas faux !" Icon="assets/calculon.ico" Height="375" Width="506" MinHeight="375" MinWidth="506" KeyDown="Window_KeyDown">
 
     <!-- DESIGN / STYLE -->
     <Window.Resources>
@@ -17,8 +17,8 @@
             <Setter Property="VerticalAlignment" Value="Bottom" />
         </Style>
         <Style x:Key="PadButton" TargetType="Button">
-            <Setter Property="Width" Value="30"/>
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="50"/>
         </Style>
     </Window.Resources>
 
@@ -85,6 +85,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="1"/>
@@ -92,12 +95,17 @@
                 <Button Grid.Column="2" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="3"/>
                 <Button Grid.Column="3" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="+"/>
                 <Button Grid.Column="4" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="-"/>
-
+                <Button Grid.Column="5" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="^"/>
+                <Button Grid.Column="6" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="√("/>
+                <Button Grid.Column="7" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="("/>
             </Grid>
 
             <!-- Buttons Set #02 -->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -110,7 +118,9 @@
                 <Button Grid.Column="2" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="6"/>
                 <Button Grid.Column="3" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="*"/>
                 <Button Grid.Column="4" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="/"/>
-                
+                <Button Grid.Column="5" Style="{StaticResource PadButton}" Content="cos"/>
+                <Button Grid.Column="6" Style="{StaticResource PadButton}" Content="sin"/>
+                <Button Grid.Column="7" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content=")"/>
             </Grid>
 
             <!-- Buttons Set #03 -->
@@ -121,14 +131,19 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="7"/>
                 <Button Grid.Column="1" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="8"/>
                 <Button Grid.Column="2" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="9"/>
-                <Button Grid.Column="3" ButtonBase.Click="Button_Back" Style="{StaticResource PadButton}" Content="DEL"/>
-                <Button Grid.Column="4" ButtonBase.Click="Button_Del" Style="{StaticResource PadButton}" Content="C"/>
-
+                <Button Grid.Column="3" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="0"/>
+                <Button Grid.Column="4" Style="{StaticResource PadButton}" Content="ANS"/>
+                <Button Grid.Column="5" ButtonBase.Click="Button_Back" Style="{StaticResource PadButton}" Content="DEL"/>
+                <Button Grid.Column="6" ButtonBase.Click="Button_Del" Style="{StaticResource PadButton}" Content="C"/>
+                <Button Grid.Column="7" Style="{StaticResource PadButton}" Content=""/>
             </Grid>
 
         </Grid>
