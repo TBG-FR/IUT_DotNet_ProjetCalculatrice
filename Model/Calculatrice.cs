@@ -10,7 +10,7 @@ namespace ProjetCalculatrice.Model
     public class Calculatrice : BaseNotifyPropertyChanged
     {
 
-        /* ===== ===== ===== Model.Calculatrice - Attributes & Properties ===== ===== ===== */
+        /* ===== ===== ===== Model.Calculatrice - Attributs & Propriétés ===== ===== ===== */
 
         public Calcul CurrentCalcul
         {
@@ -23,7 +23,7 @@ namespace ProjetCalculatrice.Model
             set { SetProperty(value); }
         }
 
-        /* ===== ===== ===== Model.Calculatrice - Constructor ===== ===== ===== */
+        /* ===== ===== ===== Model.Calculatrice - Constructeur ===== ===== ===== */
 
         public Calculatrice()
         {
@@ -35,7 +35,7 @@ namespace ProjetCalculatrice.Model
 
         }
 
-        /* ===== ===== ===== Model.Calculatrice - Methods ===== ===== ===== */
+        /* ===== ===== ===== Model.Calculatrice - Méthodess ===== ===== ===== */
 
         public void Calculate()
         {
@@ -45,21 +45,22 @@ namespace ProjetCalculatrice.Model
             if (this.CurrentCalcul.Calculate())
             {
 
-                Calculs.Add(this.CurrentCalcul);
+                Calculs.Add(this.CurrentCalcul); // Ajouter le calcul courant à l'Historique
 
                 // Créer un nouveau calcul (une copie de CurrentCalcul) pour éviter de fausser l'historique
                 // (sans ça, l'input n-1 est remplacé par l'input n dans l'historique (mais les résultats ne bougent pas))
                 // Ce calcul est simplement présent pour palier à ce problème, et est destiné à être affiché sur la calculatrice
                 Calcul temp = this.CurrentCalcul;
-                this.CurrentCalcul = new Calcul(temp.Input, temp.Result);
+                temp.Displayable = temp.Input + " = " + temp.Result;
+                this.CurrentCalcul = new Calcul("", temp.Result, temp.Displayable);
 
             }
 
             else
             {
-                // Si le calcul a échoué, on ne l'ajoute pas dans l'historique
+                // Si le calcul a échoué, on ne l'ajoute pas dans l'historique (Result = null, Displayable = ERR)
                 Calcul temp = this.CurrentCalcul;
-                this.CurrentCalcul = new Calcul(temp.Input, null);
+                this.CurrentCalcul = new Calcul(temp.Input, null, "ERR");
 
             }
 

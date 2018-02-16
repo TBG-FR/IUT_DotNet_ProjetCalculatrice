@@ -11,7 +11,7 @@ namespace ProjetCalculatrice.Model
 {
     public class Calcul : BaseNotifyPropertyChanged
     {
-        /* ===== ===== ===== Model.Calcul - Attributes/Properties ===== ===== ===== */
+        /* ===== ===== ===== Model.Calcul -  Attributs & Propriétés ===== ===== ===== */
         public string Input
         {
             get { return (string) GetProperty(); }
@@ -20,15 +20,22 @@ namespace ProjetCalculatrice.Model
 
         public double? Result
         {
-            get { return (double?) GetProperty(); }
+            get { return (double?)GetProperty(); }
             set { SetProperty(value); }
         }
 
-        /* ===== ===== ===== Model.Calcul - Constructor ===== ===== ===== */
+        public string Displayable
+        {
+            get { return (string)GetProperty(); }
+            set { SetProperty(value); }
+        }
+
+        /* ===== ===== ===== Model.Calcul - Constructeurs ===== ===== ===== */
         public Calcul()
         {
             this.Input = "";
             this.Result = null;
+            this.Displayable = null;
 
             System.Console.Write("[+] Calcul - Empty");
 
@@ -38,6 +45,7 @@ namespace ProjetCalculatrice.Model
         {
             this.Input = input;
             this.Result = null;
+            this.Displayable = null;
 
             System.Console.Write("[+] Calcul - Input");
         }
@@ -50,17 +58,60 @@ namespace ProjetCalculatrice.Model
             System.Console.Write("[+] Calcul - Input/Result");
         }
 
-        /* ===== ===== ===== Model.Calcul - Methods ===== ===== ===== */
+        public Calcul(string input, double? result, string displayable)
+        {
+            this.Input = input;
+            this.Result = result;
+            this.Displayable = displayable;
+
+            System.Console.Write("[+] Calcul - Input/Result/Displayable");
+        }
+
+        /* ===== ===== ===== Model.Calcul - Méthodes ===== ===== ===== */
 
         private bool CheckInput()
         {
 
-            // TODO ? : Vérifier Points, Virgules, Lettres, Charactères spéciaux/non supportés, etc...
-            if (this.Input.Contains(",") || this.Input.Contains("%") || this.Input.Contains("!") || this.Input.Contains("*/") || this.Input.Contains("/*") || this.Input.Contains("$"))
+            // Si la chaîne est vide ou null
+            if (this.Input == null || this.Input == "")
+            {
                 return false;
+            }
+
+            // Si la chaîne contient des (chaînes de) caractères non supportés, retourner false (ce qui va déclencher une erreur)
+            // this.Input.Contains("%") || this.Input.Contains("!") || this.Input.Contains("$") || => plus possible de les insérer
+            else if (this.Input.Contains("*/") || this.Input.Contains("/*") || this.Input.Contains(".."))
+            {
+                return false;
+            }
 
             else
+            {
+
+                // Remplacer les virgules par des points (si l'utilisateur a réussi à en insérer)
+                if (this.Input.Contains(","))
+                {
+                    this.Input.Replace(',', '.');
+                }
+
+                // Supprimer les combinaisons qui sont en fin de chaîne (pour éviter l'erreur -> plantage)
+                if ( this.Input.EndsWith("/.") || this.Input.EndsWith("./") ||
+                    this.Input.EndsWith("*.") || this.Input.EndsWith(".*") ||
+                    this.Input.EndsWith("+.") || this.Input.EndsWith(".+") ||
+                    this.Input.EndsWith("-.") || this.Input.EndsWith(".-")  )
+                {
+                    this.Input = this.Input.Remove(this.Input.Length - 2);
+                }
+
+                // Supprimer les opérateurs qui sont en fin de chaîne (pour éviter l'erreur -> plantage)
+                if (this.Input.Last().Equals('+') || this.Input.Last().Equals('-') || this.Input.Last().Equals('*') || this.Input.Last().Equals('/'))
+                {
+                    this.Input = this.Input.TrimEnd('+', '-', '/', '*');
+                }
+
+                // Retourner true (le calcul va s'effectuer normalement)
                 return true;
+            }
 
         }
 
@@ -71,17 +122,14 @@ namespace ProjetCalculatrice.Model
             {
                 MSScriptControl.ScriptControl sc = new MSScriptControl.ScriptControl();
                 sc.Language = "VBScript";
-                //string expression = "(1 + 2) * 7";
-                //object result = sc.Eval(expression);
-                //MessageBox.Show(result.ToString());
-                this.Result = sc.Eval(this.Input);
+                this.Result = sc.Eval(this.Input); // Effectuer le calcul et le placer dans Result
                 return true;
             }
 
             else
             {
                 this.Result = null;
-                MessageBox.Show("Calcul invalide !");
+                //MessageBox.Show("Calcul invalide ! Veuillez corriger votre entrée !");
                 return false;
             }
 
@@ -100,12 +148,6 @@ namespace ProjetCalculatrice.Model
             }
             return s;
         }
-
-        /*
-        public override string ToString()
-        {
-            return Nom + " " + Prenom;
-        }
-        */
+        
     }
 }
