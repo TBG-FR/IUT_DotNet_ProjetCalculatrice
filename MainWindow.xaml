@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Kaalculattrice - Calcul | « C'est pas faux ! »"
         Icon="assets/calculon.ico"
-        Height="350" Width="525" MinWidth="180" MinHeight="250"
+        Height="400" Width="525" MinHeight="400" MinWidth="525"
         KeyDown="Window_KeyDown">
 
     <!-- DESIGN / STYLE -->
@@ -148,7 +148,7 @@
                 <Button Grid.Column="1" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="8"/>
                 <Button Grid.Column="2" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="9"/>
                 <Button Grid.Column="3" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="0"/>
-                <Button Grid.Column="4" Style="{StaticResource PadButton}" Content="ANS"/>
+                <Button Grid.Column="4" ButtonBase.Click="Button_Ans" Style="{StaticResource PadButton}" Content="ANS"/>
                 <Button Grid.Column="5" ButtonBase.Click="Button_Back" Style="{StaticResource PadButton}" Content="DEL"/>
                 <Button Grid.Column="6" ButtonBase.Click="Button_Del" Style="{StaticResource PadButton}" Content="C"/>
                 <Button Grid.Column="7" Style="{StaticResource PadButton}" Content=""/>

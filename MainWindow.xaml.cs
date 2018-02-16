@@ -32,38 +32,9 @@ namespace ProjetCalculatrice
         public MainWindow()
         {
             this.calculatrice = new Calculatrice();
-            string test = this.calculatrice.CurrentCalcul.ReplaceSqrt("√(5+cos(8))+√(5+sin(4))+√(5*4^4)+√(√(5+3)+2)");
             this.DataContext = this.calculatrice;
             this.subWindows = new Collection<Window>();
             InitializeComponent();
-
-            /*
-            MSScriptControl.ScriptControl sc = new MSScriptControl.ScriptControl();
-            sc.Language = "VBScript";
-            string expression = "(1 + 2) * 7";
-            object result = sc.Eval(expression);
-            MessageBox.Show("A1" + result.ToString());
-
-            expression = "(1 + 2) * 7 + 78 / 12";
-            result = sc.Eval(expression);
-            MessageBox.Show("A2" + result.ToString());
-
-            expression = "exp(2)";
-            result = sc.Eval(expression);
-            MessageBox.Show("E2" + result.ToString());
-            /*
-            expression = "Math.Sqrt(84) + 100";
-            result = sc.Eval(expression);
-            MessageBox.Show("SQ" + result.ToString());
-            *//*
-            expression = "0.3 + 0.2";
-            result = sc.Eval(expression);
-            MessageBox.Show("POI" + result.ToString());
-            /*
-            expression = "0,3 + 0,2";
-            result = sc.Eval(expression);
-            MessageBox.Show("VIR" + result.ToString());
-            */
         }
 
         private void Button_Calculate_Click(object sender, RoutedEventArgs e)
@@ -115,6 +86,11 @@ namespace ProjetCalculatrice
         private void Button_Del(object sender, RoutedEventArgs e)
         {
             this.calculatrice.CurrentCalcul.Input = "";
+        }
+
+        private void Button_Ans(object sender, RoutedEventArgs e)
+        {
+            this.calculatrice.CurrentCalcul.Input += this.calculatrice.CurrentCalcul.Result;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -170,11 +146,3 @@ namespace ProjetCalculatrice
         }
     }
 }
-
-    /*
-    MSScriptControl.ScriptControl sc = new MSScriptControl.ScriptControl();
-    sc.Language = "VBScript";
-    string expression = "(1 + 2) * 7";
-    object result = sc.Eval(expression);
-    MessageBox.Show(result.ToString());        
-    */

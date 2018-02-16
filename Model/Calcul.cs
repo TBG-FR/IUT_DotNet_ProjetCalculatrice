@@ -118,11 +118,26 @@ namespace ProjetCalculatrice.Model
         public bool Calculate()
         {
 
+            // Fonction de remplacement des racines carrées (de symbole à ^0.5)
+            this.ReplaceSqrt();
+
             if(CheckInput())
             {
                 MSScriptControl.ScriptControl sc = new MSScriptControl.ScriptControl();
                 sc.Language = "VBScript";
-                this.Result = sc.Eval(this.Input); // Effectuer le calcul et le placer dans Result
+
+                try // Le try-catch ici permet de d'éviter que la calculatrice plante en cas de calcul incorrect non corrigé par CheckInput()
+                {
+                    this.Result = sc.Eval(this.Input); // Effectuer le calcul et le placer dans Result
+                }
+
+                catch
+                {
+                    this.Result = null;
+                    //MessageBox.Show("Calcul invalide ! Veuillez corriger votre entrée !");
+                    return false;
+                }
+
                 return true;
             }
 
@@ -135,18 +150,20 @@ namespace ProjetCalculatrice.Model
 
         }
 
-        public string ReplaceSqrt(String s)
+        public bool ReplaceSqrt()
         {
+            bool state = false;
             Regex rgx = new Regex(@"√\((\d|[+\-*/^().]|cos|sin)+\)");
-            while (rgx.IsMatch(s))
+            while (rgx.IsMatch(this.Input))
             {
-                Match m = rgx.Match(s);
-                string start = s.Substring(0, m.Index);
-                string end = s.Substring(m.Index + m.Length - 1);
+                Match m = rgx.Match(this.Input);
+                string start = this.Input.Substring(0, m.Index);
+                string end = this.Input.Substring(m.Index + m.Length - 1);
                 string replace = m.Value.Substring(1) + "^(0.5";
-                s = start + replace + end;
+                this.Input = start + replace + end;
+                state = true;
             }
-            return s;
+            return state;
         }
         
     }
