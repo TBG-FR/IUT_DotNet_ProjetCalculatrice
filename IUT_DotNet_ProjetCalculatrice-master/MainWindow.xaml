@@ -1,0 +1,139 @@
+﻿<Window x:Class="ProjetCalculatrice.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetCalculatrice"
+        mc:Ignorable="d"
+        Title="Kaalculattrice: C'est pas faux !" Icon="assets/calculon.ico" Height="350" Width="525" MinWidth="180" MinHeight="250" KeyDown="Window_KeyDown">
+
+    <!-- DESIGN / STYLE -->
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+        <Style x:Key="Grid1" TargetType="Grid">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+        <Style x:Key="PadButton" TargetType="Button">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+    </Window.Resources>
+
+    <!-- MISE EN PAGE -->
+    <Grid Style="{StaticResource Grid1}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Grid contenant les champs de la Calculatrice -->
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Bouton(s) d'Affichage (Historique, ...) -->
+            <Button Grid.Row="0"
+                    Content="Historique"
+                    ButtonBase.Click="Button_History_Click"
+                    HorizontalAlignment="Right">
+            </Button>
+
+            <!-- TextBox : Entrée -->
+            <TextBlock Grid.Row="1" Text="{Binding CurrentCalcul.Input}">
+
+            </TextBlock>
+
+            <!-- Textbox : Résultat -->
+            <StackPanel  Grid.Row="2" Orientation="Horizontal">
+                <TextBlock Text="= "></TextBlock>
+                <TextBlock Text="{Binding CurrentCalcul.Result}" />
+            </StackPanel>
+
+            <!-- Bouton : Calcul-->
+            <Button Grid.Row="3"
+                    Content="Calculer"
+                    ButtonBase.Click="Button_Calculate_Click"
+                    HorizontalAlignment="Right" Height="40">
+            </Button>
+
+
+        </Grid>
+        
+        <!-- Separateur entre les Grid -->
+        <Separator Grid.Row="1" />
+
+        <!-- Grid contenant les boutons de la Calculatrice -->
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- Buttons Set #01 -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="1"/>
+                <Button Grid.Column="1" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="2"/>
+                <Button Grid.Column="2" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="3"/>
+                <Button Grid.Column="3" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="+"/>
+                <Button Grid.Column="4" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="-"/>
+
+            </Grid>
+
+            <!-- Buttons Set #02 -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="4"/>
+                <Button Grid.Column="1" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="5"/>
+                <Button Grid.Column="2" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="6"/>
+                <Button Grid.Column="3" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="*"/>
+                <Button Grid.Column="4" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="/"/>
+                
+            </Grid>
+
+            <!-- Buttons Set #03 -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="7"/>
+                <Button Grid.Column="1" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="8"/>
+                <Button Grid.Column="2" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="9"/>
+                <Button Grid.Column="3" ButtonBase.Click="Button_Back" Style="{StaticResource PadButton}" Content="DEL"/>
+                <Button Grid.Column="4" ButtonBase.Click="Button_Del" Style="{StaticResource PadButton}" Content="C"/>
+                
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+    
+</Window>
