@@ -91,7 +91,7 @@ namespace ProjetCalculatrice.Model
                 // Remplacer les virgules par des points (si l'utilisateur a réussi à en insérer)
                 if (this.Input.Contains(","))
                 {
-                    this.Input.Replace(',', '.');
+                    this.Input = this.Input.Replace(',', '.');
                 }
 
                 // Supprimer les combinaisons qui sont en fin de chaîne (pour éviter l'erreur -> plantage)
