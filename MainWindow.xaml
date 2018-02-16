@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetCalculatrice"
         mc:Ignorable="d"
-        Title="Kaalculattrice: C'est pas faux !" Icon="assets/calculon.ico" Height="350" Width="525" MinWidth="180" MinHeight="250" KeyDown="Window_KeyDown">
+        Title="Kaalculattrice - Calcul | « C'est pas faux ! »"
+        Icon="assets/calculon.ico"
+        Height="350" Width="525" MinWidth="180" MinHeight="250"
+        KeyDown="Window_KeyDown">
 
     <!-- DESIGN / STYLE -->
     <Window.Resources>
@@ -40,23 +43,28 @@
             </Grid.RowDefinitions>
 
             <!-- Bouton(s) d'Affichage (Historique, ...) -->
-            <Button Grid.Row="0"
-                    Content="Historique"
-                    ButtonBase.Click="Button_History_Click"
-                    HorizontalAlignment="Right">
-            </Button>
+            <Menu Grid.Row="0">
+                <MenuItem Header="Fichier" HorizontalAlignment="Left">
+                    <MenuItem Header="Nouvelle Calculatrice" Click="Button_NewCalc_Click" />
+                    <MenuItem Header="Fermer cette Calculatrice" Click="Button_CloseCalc_Click" />
+                    <MenuItem Header="Fermer les sous-Fenêtres" Click="Button_CloseSub_Click" />
+                </MenuItem>
+
+                <MenuItem Header="Historique" Click="Button_History_Click" HorizontalAlignment="Right" />
+
+            </Menu>
 
             <!-- TextBlock : Entrée -->
-            <TextBlock Grid.Row="1" Text="{Binding CurrentCalcul.Input}">
-
+            <TextBlock Grid.Row="1"
+                       Text="{Binding CurrentCalcul.Input}">
             </TextBlock>
 
             <!-- TextBlock : Résultat -->
-            <TextBlock Grid.Row="2" Text="{Binding CurrentCalcul.Result}">
-
+            <TextBlock Grid.Row="2"
+                       Text="{Binding CurrentCalcul.Displayable}">
             </TextBlock>
 
-            <!-- Bouton : Calcul-->
+            <!-- Bouton : Calcul-->            
             <Button Grid.Row="3"
                     Content="Calculer"
                     ButtonBase.Click="Button_Calculate_Click"

@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetCalculatrice"
         mc:Ignorable="d"
-        Title="HistoryWindow" Height="400" Width="400">
+        Title="Kaalculattrice - Historique | « Oh oui oui, c'est magnifique, oui, oui, il y a des taches, c'est tout barré, j'ai tellement raturé que j'ai transpercé le papier... C'est immonde... on dirait que j'ai lavé par terre avec, mais c'est fait... » "
+        Icon="assets/calculon.ico"
+        Height="400" Width="400">
 
     <!-- Style (Template) -->
     <Window.Resources>
 
-        <Style x:Key="BottomMenu_Button" TargetType="Button">
-            <Setter Property="Height" Value="50"></Setter>
-            <Setter Property="Margin" Value="10"></Setter>
+        <Style x:Key="SingleCalcul" TargetType="StackPanel">
+            <!--<Setter Property="Background" Value="Beige"></Setter>-->
+            <Setter Property="Width" Value="400"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+
         </Style>
 
         <Style x:Key="Calcul" TargetType="TextBlock">
@@ -22,11 +26,21 @@
 
         <Style x:Key="Equals" TargetType="TextBlock">
             <Setter Property="TextTrimming" Value="None" />
+            <Setter Property="FontFamily" Value="Comic Sans MS" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
         
         <Style x:Key="Result" TargetType="TextBlock">
             <Setter Property="TextTrimming" Value="None" />
+            <Setter Property="FontFamily" Value="Verdana" />
+        </Style>
+
+        <Style x:Key="BottomMenu_Button" TargetType="Button">
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Background" Value="DarkCyan"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="FontSize" Value="25"></Setter>
         </Style>
         
     </Window.Resources>
@@ -38,18 +52,19 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ListBox ItemsSource="{Binding Calculs}" Grid.Row="0">
+        <ListBox Grid.Row="0" ItemsSource="{Binding Calculs}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" >
 
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Style="{StaticResource SingleCalcul}">
                             <TextBlock Text="{Binding Input}" Style="{StaticResource Calcul}" />
                             <TextBlock Text=" = " Style="{StaticResource Equals}" />
                             <TextBlock Text="{Binding Result}" Style="{StaticResource Result}" />
                         </StackPanel>
 
                     </StackPanel>
+
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ListBox>
@@ -57,11 +72,11 @@
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
 
             <Button Style="{StaticResource BottomMenu_Button}"
-                    Content="Effacer l'Historique"
+                    Content="EFFACER"
                     Click="Button_ResetHistory_Click"/>
 
             <Button Style="{StaticResource BottomMenu_Button}"
-                    Content="Exporter l'Historique"
+                    Content="EXPORTER"
                     Click="Button_ExportHistory_Click"/>
 
         </StackPanel>

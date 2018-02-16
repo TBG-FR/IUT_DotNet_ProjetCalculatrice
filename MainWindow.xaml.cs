@@ -27,10 +27,13 @@ namespace ProjetCalculatrice
 
         private Calculatrice calculatrice;
 
+        private Collection<Window> subWindows;
+
         public MainWindow()
         {
             this.calculatrice = new Calculatrice();
             this.DataContext = this.calculatrice;
+            this.subWindows = new Collection<Window>();
             InitializeComponent();
 
             /*
@@ -70,7 +73,31 @@ namespace ProjetCalculatrice
         private void Button_History_Click(object sender, RoutedEventArgs e)
         {
             HistoryWindow subW_History = new HistoryWindow(this.calculatrice);
+            subWindows.Add(subW_History);
             subW_History.Show();
+        }
+
+        private void Button_NewCalc_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow subW_Calc = new MainWindow();
+            subWindows.Add(subW_Calc);
+            subW_Calc.Show();
+        }
+
+        private void Button_CloseCalc_Click(object sender, RoutedEventArgs e)
+        {
+
+            Button_CloseSub_Click(sender, e);
+
+            this.Close();
+        }
+
+        private void Button_CloseSub_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in subWindows)
+            {
+                w.Close();
+            }
         }
 
         private void Button_Insert_Self(object sender, RoutedEventArgs e)
