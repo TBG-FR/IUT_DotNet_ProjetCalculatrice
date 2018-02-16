@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+
 
 namespace ProjetCalculatrice.Model
 {
@@ -132,5 +134,20 @@ namespace ProjetCalculatrice.Model
             }
 
         }
+
+        public string ReplaceSqrt(String s)
+        {
+            Regex rgx = new Regex(@"√\((\d|[+\-*/^().]|cos|sin)+\)");
+            while (rgx.IsMatch(s))
+            {
+                Match m = rgx.Match(s);
+                string start = s.Substring(0, m.Index);
+                string end = s.Substring(m.Index + m.Length - 1);
+                string replace = m.Value.Substring(1) + "^(0.5";
+                s = start + replace + end;
+            }
+            return s;
+        }
+        
     }
 }
