@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetCalculatrice"
         mc:Ignorable="d"
-        Title="Kaalculattrice: C'est pas faux !" Icon="assets/calculon.ico" Height="350" Width="525" MinWidth="180" MinHeight="250">
+        Title="Kaalculattrice: C'est pas faux !" Icon="assets/calculon.ico" Height="350" Width="525" MinWidth="180" MinHeight="250" KeyDown="Window_KeyDown">
 
     <!-- DESIGN / STYLE -->
     <Window.Resources>
@@ -46,12 +46,12 @@
                     HorizontalAlignment="Right">
             </Button>
 
-            <!-- TextBox : Entrée -->
-            <TextBox Grid.Row="1" Text="{Binding CurrentCalcul.Input}">
+            <!-- TextBlock : Entrée -->
+            <TextBlock Grid.Row="1" Text="{Binding CurrentCalcul.Input}">
 
-            </TextBox>
+            </TextBlock>
 
-            <!-- Textbox : Résultat -->
+            <!-- TextBlock : Résultat -->
             <TextBlock Grid.Row="2" Text="{Binding CurrentCalcul.Result}">
 
             </TextBlock>
@@ -126,9 +126,9 @@
                 <Button Grid.Column="0" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="7"/>
                 <Button Grid.Column="1" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="8"/>
                 <Button Grid.Column="2" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="9"/>
-                <Button Grid.Column="3" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="DEL"/>
-                <Button Grid.Column="4" ButtonBase.Click="Button_Insert_Self" Style="{StaticResource PadButton}" Content="C"/>
-                
+                <Button Grid.Column="3" ButtonBase.Click="Button_Back" Style="{StaticResource PadButton}" Content="DEL"/>
+                <Button Grid.Column="4" ButtonBase.Click="Button_Del" Style="{StaticResource PadButton}" Content="C"/>
+
             </Grid>
 
         </Grid>
